@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
 export default class Navbar extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = { keyword: '' }
+    }
+
     render() {
         return (
             <div>
@@ -32,8 +38,8 @@ export default class Navbar extends Component {
                             </li>
                         </ul>
                         <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(event) => { this.props.onSearch(event.target.value);event.preventDefault(); }} />
+                            {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.props.onHello}>Search</button> */}
                         </form>
                     </div>
                 </nav>
