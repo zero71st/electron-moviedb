@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MyForm from "./components/MyForm";
 import Navbar from './components/Navbar';
+import Error from './components/Error';
 
 export default class App extends Component {
 
@@ -19,6 +20,7 @@ export default class App extends Component {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/form' component={MyForm} />
+            <Route component={Error}/>
           </Switch>
         </BrowserRouter>
       </div>
