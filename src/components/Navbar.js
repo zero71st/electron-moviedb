@@ -40,6 +40,10 @@ export default class Navbar extends Component {
                                 <a className="nav-link" href="/responsive">Responsive Form</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="/parent">Parent - child comunicate</a>
+                            </li>
+
+                            <li className="nav-item">
                                 <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>

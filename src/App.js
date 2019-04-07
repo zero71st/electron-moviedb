@@ -9,6 +9,7 @@ import Error from './components/Error';
 import MyLayout from './components/MyLayout';
 import Card from './components/Card';
 import ResponsiveForm from './components/ResponsiveForm';
+import Parent from './components/Parent';
 
 export default class App extends Component {
 
@@ -27,6 +28,7 @@ export default class App extends Component {
             <Route path='/mylayout' component={MyLayout}/>
             <Route path='/card' component={Card}/>
             <Route path='/responsive' component ={ResponsiveForm}/>
+            <Route path='/parent' component = {Parent}/>
             <Route component={Error}/>
 
           </Switch>
