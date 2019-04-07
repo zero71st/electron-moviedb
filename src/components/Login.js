@@ -13,6 +13,7 @@ export default class Login extends Component {
     render() {
         return (
             <div class="container">
+                <div class="row">
                 <form onSubmit={(e)=> { 
                     alert(JSON.stringify(this.state));
                     e.preventDefault();
@@ -34,12 +35,13 @@ export default class Login extends Component {
                                id="" 
                                placeholder="" />
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
+                    <div class="form-group">
+                        <div class="col-12">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </form>
+                </div>
             </div>
         )
     }
