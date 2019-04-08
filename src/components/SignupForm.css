@@ -1,0 +1,19 @@
+.display-5{
+    text-shadow: 1px 1px 2px 1px;
+}
+
+.form-control{
+    margin: 0%;
+}
+
+/* .form-control:hover{
+    background-color: yellow;
+} */
+
+.form-control:focus{
+    background-color: yellow;
+}
+
+.btn:hover{
+    background-color: gray;
+}

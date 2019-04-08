@@ -20,7 +20,7 @@ export default class Parent extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <div className="alert alert-danger">
+                        <div className="alert alert-success">
                             {this.state.title}
                         </div>                
                         {<Child title={this.state.title} changeParentTitle={this.changeTitle}/>}    

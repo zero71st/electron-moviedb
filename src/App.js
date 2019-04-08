@@ -10,6 +10,7 @@ import MyLayout from './components/MyLayout';
 import Card from './components/Card';
 import ResponsiveForm from './components/ResponsiveForm';
 import Parent from './components/Parent';
+import Signup from './components/Signup';
 
 export default class App extends Component {
 
@@ -29,6 +30,7 @@ export default class App extends Component {
             <Route path='/card' component={Card}/>
             <Route path='/responsive' component ={ResponsiveForm}/>
             <Route path='/parent' component = {Parent}/>
+            <Route path='/signup' component = {Signup}/>
             <Route component={Error}/>
 
           </Switch>
