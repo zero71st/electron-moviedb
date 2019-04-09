@@ -21,7 +21,6 @@ export default class App extends Component {
         <BrowserRouter>
           <Navbar />
           <Switch>
-            
             <Route path='/' component={Home} exact />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
@@ -32,7 +31,6 @@ export default class App extends Component {
             <Route path='/parent' component = {Parent}/>
             <Route path='/signup' component = {Signup}/>
             <Route component={Error}/>
-
           </Switch>
         </BrowserRouter>
       </div>

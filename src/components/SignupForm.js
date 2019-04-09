@@ -17,13 +17,24 @@ export default class SignupForm extends Component {
     }
   }
   
-
   onTextChange=(e)=>{
       this.setState({[e.target.name]:e.target.value});
   }
 
   onSubmit=(e)=>{
-      alert(JSON.stringify(e));
+     // alert(JSON.stringify(this.state));
+      e.preventDefault();
+      this.props.onSubmit(this.state);
+
+      this.setState({
+        firstname:'',
+        lastname:'',
+        password:'',
+        confirm_password:'',
+        email:'',
+        phone:'',
+        answer:'',
+      });
   }
 
   render() {
@@ -32,7 +43,8 @@ export default class SignupForm extends Component {
         <div class="container">
           <p className="alert alert-info text-center">Apply as a Employee</p>
           {/* <hr/> */}
-            <form>
+          
+          <form >
           <div class="row">
             <div className="col-md-6">
               <div class="form-group">
@@ -44,11 +56,6 @@ export default class SignupForm extends Component {
                 <input type="text" onChange={this.onTextChange}
                   class="form-control" name="lastname" id="" aria-describedby="helpId" placeholder="Last Name*" />
               </div>
-
-              {/* <div class="form-group">
-                <input type="text" onChange={(e)=> onTextChange(e)}
-                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="First Name*" />
-              </div> */}
 
               <div class="form-group">
                 <input type="text" onChange={this.onTextChange}
@@ -63,26 +70,24 @@ export default class SignupForm extends Component {
             </div>
             <div className="col-md-6">
             <div class="form-group">
-                <input type="text" onChange={(e)=> this.onTextChange(e)}
+                <input type="text" onChange={this.onTextChange}
                   class="form-control" name="email" id="" aria-describedby="helpId" placeholder="Your Email*" />
               </div>
 
               <div class="form-group">
-                <input type="text" onChange={(e)=> this.onTextChange(e)}
+                <input type="text" onChange={this.onTextChange}
                   class="form-control" name="phone" id="" aria-describedby="helpId" placeholder="Your Phone*" />
               </div>
 
               <div class="form-group">
-                <input type="text" onChange={(e)=> this.onTextChange(e)}
+                <input type="text" onChange={this.onTextChange}
                   class="form-control" name="answer" id="" aria-describedby="helpId" placeholder="Enter Your Answer*" />
               </div>
 
-              <input name="" id="" class="btn btn-primary col-sm-12 col-md-3" type="button" value="Register"></input>
+              <button type="submit" onClick={(e)=>this.onSubmit(e)} class="btn btn-primary col-sm-12 col-md-3">Register</button>
 
             </div>
-            <div className="col-12">
-              <p className="alert alert-success">{JSON.stringify(this.state)}</p>
-            </div>
+      
           </div>
             </form>
           

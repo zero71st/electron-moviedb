@@ -121,7 +121,7 @@ export default class ResponsiveForm extends Component {
                         </div>
                     </div>
                 </div>
-</form>
+            </form>
       </div>
     )
   }
