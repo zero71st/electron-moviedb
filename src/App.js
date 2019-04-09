@@ -11,6 +11,7 @@ import Card from './components/Card';
 import ResponsiveForm from './components/ResponsiveForm';
 import Parent from './components/Parent';
 import Signup from './components/Signup';
+import SpreadAttribute from './components/SpreadAttribute';
 
 export default class App extends Component {
 
@@ -30,6 +31,7 @@ export default class App extends Component {
             <Route path='/responsive' component ={ResponsiveForm}/>
             <Route path='/parent' component = {Parent}/>
             <Route path='/signup' component = {Signup}/>
+            <Route path='/spread' component = {SpreadAttribute}/>
             <Route component={Error}/>
           </Switch>
         </BrowserRouter>
