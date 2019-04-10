@@ -8,12 +8,12 @@ export default class FormValidation extends Component{
         this.state={
             newUser:{
                 firstname:'',
-                age:0,
+                age:'',
                 gender:'',
-                skill:[],
+                skills:[],
             },
             genders:["Male","Female","Orther"],
-            skills:["Programmer","Development","Testing","Design","UX-UI"]
+            optionSkills:["Programmer","Development","Testing","Design","UX-UI"]
         }
     }
 
@@ -33,11 +33,24 @@ export default class FormValidation extends Component{
         }));
     }
 
-   
+    handleCheckbox=(e)=>{
+        // console.log(this.state.newUser.skill);
+        alert(e.target.value);
+        const newSelection = e.target.value;
+        let newSelectionArray;
+
+        newSelectionArray = [...this.state.newUser.skills,newSelection];
+
+        this.setState(prevState => ({
+            newUser: { ...prevState.newUser, skills: newSelectionArray }
+          }));
+
+
+    }
 
     render(){
         return(
-            <div className="container">
+            <div class="container">
                 <h3>Sample Form Container</h3>
                 <div className="row">
                     <div className="col-md-6">
@@ -63,13 +76,22 @@ export default class FormValidation extends Component{
                             </div>
 
                             <div className="form-group">
-                                {this.state.skills.map(skill => {
+                                {this.state.optionSkills.map(skill => {
                                     return (
                                         <div className="form-check form-check-inline">
-                                            <input key={skill} name="skill" value={this.state.skills} onChange={this.handleChange} className="form-check-input" type="checkbox" id="gridCheck" />
-                                            <label className="form-check-label" htmlFor="gridCheck">
+                                            <input 
+                                                id="skills"
+                                                name="skills"
+                                                value={skill}
+                                                onChange={this.handleCheckbox} 
+                                                //checked={this.state.newUser.skills.indexof(skill) > -1}
+                                                checked={this.state.newUser.skills.indexOf(skill) > -1}
+                                                className="form-check-input"
+                                                type="checkbox" 
+                                                />
+                                            {/* <label className="form-check-label" htmlFor="gridCheck">
                                                 {skill}
-                                            </label>
+                                            </label> */}
                                         </div>
                                     )
                                 }
