@@ -12,6 +12,7 @@ import ResponsiveForm from './components/ResponsiveForm';
 import Parent from './components/Parent';
 import Signup from './components/Signup';
 import SpreadAttribute from './components/SpreadAttribute';
+import FormValidation from './components/FormValidation';
 
 export default class App extends Component {
 
@@ -32,6 +33,7 @@ export default class App extends Component {
             <Route path='/parent' component = {Parent}/>
             <Route path='/signup' component = {Signup}/>
             <Route path='/spread' component = {SpreadAttribute}/>
+            <Route path='/validation' component= {FormValidation}/>
             <Route component={Error}/>
           </Switch>
         </BrowserRouter>
