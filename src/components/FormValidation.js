@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-
+import TextBox from '../controls/TextBox';
+import Dropdown from '../controls/Dropdown';
+import CheckBoxList from '../controls/CheckBoxList';
+import TextArea from '../controls/TextArea';
+import Button from '../controls/Button';
 
 export default class FormValidation extends Component{
     constructor(props){
@@ -54,6 +58,18 @@ export default class FormValidation extends Component{
         this.setState(prevState => ({newUser:{...prevState.newUser,about:value}}));
     }
 
+    handleClear=(e)=>{
+        this.setState({
+            newUser:{
+                firstname:'',
+                age:'',
+                skills:[],
+                gender:'',
+                about:''
+            }
+        })
+    }
+
     render(){
         return(
             <div class="container">
@@ -61,64 +77,60 @@ export default class FormValidation extends Component{
                 <div className="row">
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit}>
+                            <TextBox
+                                name={"firstname"}
+                                title={"Full Name"}
+                                value={this.state.newUser.firstname}
+                                onTextChange={this.handleChange}
+                                placeholder={"Enter your name"}
+                            />
 
-                            <div className="form-group">
-                                <label htmlFor="fullname">Full Name</label>
-                                <input type="text" name="firstname" onChange={this.handleChange} className="form-control" id="fullname" aria-describedby="fullnameHelp" placeholder="Enter your name" />
-                            </div>
+                            <TextBox
+                                name={"age"}
+                                title={"Age"}
+                                value={this.state.newUser.age}
+                                onTextChange={this.handleChange}
+                                placeholder = {"Enter your age"}
+                            />
 
-                            <div className="form-group">
-                                <label htmlFor="age">Age</label>
-                                <input type="text" name="age" onChange={this.handleChange} className="form-control" id="age" placeholder="Enter your age" />
-                            </div>
+                            <Dropdown
+                                name={"gender"}
+                                title={"Gender"}
+                                Items={this.state.genders}
+                                onSelectedIndexChange={this.handleChange}
+                                placeholder={"Select Gender"}
+                            />
 
-                            <div className="form-group">
-                                <label htmlFor="gender">Gender</label>
-                                <select id="gender" name="gender" value={this.state.newUser.gender} onChange={this.handleChange} className="form-control">
-                                    <option selected>Select Gender</option>
-                                    {this.state.genders.map(gender=> 
-                                        <option key={gender} value={gender}>
-                                            {gender}
-                                        </option>
-                                    )}
-                                </select>
-                            </div>
+                            <CheckBoxList
+                                name={"skills"}
+                                Items={this.state.optionSkills}
+                                SelectedItems={this.state.newUser.skills}
+                                onItemChecked={this.handleCheckbox}
+                            />
 
-                            <div className="form-group">
-                                {this.state.optionSkills.map(skill => {
-                                    return (
-                                        <div className="form-check form-check-inline">
-                                            <label className="form-check-label" htmlFor="gridCheck">
-                                                {skill}
-                                                <input
-                                                    id="skills"
-                                                    name="skills"
-                                                    value={skill}
-                                                    onChange={this.handleCheckbox}
-                                                    checked={this.state.newUser.skills.indexOf(skill) > -1}
-                                                    className="form-check-input"
-                                                    type="checkbox" />
-                                            </label>
-                                        </div>
-                                    )
-                                }
-                            )}
-                            </div>
+                            <TextArea
+                                name={"about"}
+                                value={this.state.newUser.about}
+                                title={"About you"}
+                                cols={"3"}
+                                rows={"4"}
+                                onTextChange={this.handleTextArea}
+                            />
 
-                            <div className="form-group">
-                                <label htmlFor="about">About you</label>
-                                <textarea 
-                                    className="form-control"
-                                    id="about"
-                                    name="about"
-                                    rows="4"
-                                    cols="3"
-                                    value={this.state.newUser.about}
-                                    onChange={this.handleTextArea}
-                                />
-                            </div>
+                            <Button
+                                type={"submit"}
+                                buttonType={"primary"}
+                                caption="Submit"
+                            />
 
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <Button
+                                type={"reset"}
+                                buttonType={"secondary"}
+                                caption="Clear"
+                                onClick={this.handleClear}
+                                style={{margin:"10px 10px 10px 10px"}}
+                            />
+
                         </form>
                     </div>
                 </div>
