@@ -15,13 +15,21 @@ import SpreadAttribute from './components/SpreadAttribute';
 import FormValidation from './components/FormValidation';
 
 export default class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      username:'',
+      password:''
+    }
+  }
 
   render() {
     return (
 
       <div>
         <BrowserRouter>
-          <Navbar />
+          <Navbar/>
           <Switch>
             <Route path='/' component={Home} exact />
             <Route path='/login' component={Login} />
