@@ -35,7 +35,10 @@ export default class FormValidation extends Component{
                    ...prevState.newUser,
                    [name]:value
                }
-        }));
+             }),
+               ()=> console.log(this.state.newUser)
+             );
+    
     }
 
     handleCheckbox=(e)=>{
@@ -49,13 +52,25 @@ export default class FormValidation extends Component{
             newSelectionArray = [...this.state.newUser.skills, newSelection];
         }
 
-        this.setState(prevState => ({newUser: { ...prevState.newUser, skills: newSelectionArray }}));
+        this.setState(prevState => ({
+            newUser: { 
+                ...prevState.newUser,
+                skills: newSelectionArray }
+            }),
+                ()=> console.log(this.state.newUser)
+            );
     }
 
     handleTextArea=(e)=> {
         let value = e.target.value;
 
-        this.setState(prevState => ({newUser:{...prevState.newUser,about:value}}));
+        this.setState(prevState => ({
+            newUser:{
+                ...prevState.newUser,
+                about:value}
+            }),
+                ()=> console.log(this.state.newUser)
+            );
     }
 
     handleClear=(e)=>{

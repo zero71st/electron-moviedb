@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, HashRouter, Switch } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -28,23 +28,23 @@ export default class App extends Component {
     return (
 
       <div>
-        <BrowserRouter>
+        <HashRouter>
           <Navbar/>
           <Switch>
-            <Route path='/' component={Home} exact />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
-            <Route path='/myform' component={MyForm} />
-            <Route path='/mylayout' component={MyLayout}/>
-            <Route path='/card' component={Card}/>
-            <Route path='/responsive' component ={ResponsiveForm}/>
-            <Route path='/parent' component = {Parent}/>
-            <Route path='/signup' component = {Signup}/>
-            <Route path='/spread' component = {SpreadAttribute}/>
-            <Route path='/validation' component= {FormValidation}/>
-            <Route component={Error}/>
+              <Route path='/' component={Home} exact />
+              <Route path='/login' component={Login} />
+              <Route path='/register' component={Register} />
+              <Route path='/myform' component={MyForm} />
+              <Route path='/mylayout' component={MyLayout}/>
+              <Route path='/card' component={Card}/>
+              <Route path='/responsive' component ={ResponsiveForm}/>
+              <Route path='/parent' component = {Parent}/>
+              <Route path='/signup' component = {Signup}/>
+              <Route path='/spread' component = {SpreadAttribute}/>
+              <Route path='/validation' component= {FormValidation}/>
+              <Route component={Error}/>
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }

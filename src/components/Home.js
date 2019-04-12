@@ -6,8 +6,8 @@ export default class Home extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { 
-            movies: [] 
+        this.state = {
+            movies: []
         }
     }
 
@@ -16,7 +16,6 @@ export default class Home extends Component {
     }
 
     search = (keyword) => {
-
 
         var items = [];
 
@@ -30,7 +29,7 @@ export default class Home extends Component {
                 });
 
                 this.setState({
-                    movies: items 
+                    movies: items
                 });
             })
     }

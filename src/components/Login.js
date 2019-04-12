@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Login.css'
-import Fire from '../configs/fire'
-import fire from '../configs/fire';
+import fire from '../configs/fire'
 
 export default class Login extends Component {
     constructor(props) {
@@ -9,13 +8,45 @@ export default class Login extends Component {
     
       this.state = {
          username:'',
-         password:''
+         password:'',
+         currentUser:null,
+         message:''
       }
+    }
+
+    componentDidMount(){
+        fire
+            .auth()
+            .onAuthStateChanged(user => {
+                if(user){
+                    this.SetState(state=>({
+                        ...state.currentUser,
+                        currentUser:user
+                    }))
+                }
+            })
     }
     
     handleFormSubmit=(e)=>{
-      e.preventDefault();
+        e.preventDefault();
 
+        const { username, password } = this.state;
+
+        fire
+            .auth()
+            .signInWithEmailAndPassword(username, password)
+            .then((response) => {
+                this.setState({
+                    currentUser: response.user
+                });
+            })
+            .catch((error) => {
+                this.setState({
+                    message: error.message
+                });
+            });
+
+        this.writeLog();
     }
 
     handleTextChange=(e)=>{
@@ -29,43 +60,83 @@ export default class Login extends Component {
         );
     }
 
+    handleLogout=(e)=> {
+        e.preventDefault();
+
+        fire
+            .auth()
+            .signOut()
+            .then(()=>{
+                this.setState({
+                    currentUser:null
+                })
+            })
+    }
+
     writeLog(){
         console.log(JSON.stringify(this.state));
     }
 
+    showMessage(){
+        if(this.state.message !== '')
+            return <p className="alert alert-danger col-12">{this.state.message}</p>
+    }
+
     render() {
+
+        const { currentUser } = this.state;
+
+        if (currentUser) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <p className="col-md-10">
+                            Hello {currentUser.email}
+                        </p>
+                        <button 
+                            className="col-md-2 btn btn-primary"
+                            onClick={this.handleLogout}
+                        >
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div class="container">
                 <div class="row">
-                <div className="col-6 card">
-                <form onSubmit={this.handleFormSubmit}>
-                    <div class="form-group">
-                        <label for="">Username</label>
-                        <input 
-                            onChange={this.handleTextChange}
-                            type="text"
-                            class="form-control" 
-                            name="username"
-                            id="username"
-                            placeholder="Enter your username"
-                        />
+                    {this.showMessage}
+                    <div className="col-6 card">
+                        <form onSubmit={this.handleFormSubmit}>
+                            <div class="form-group">
+                                <label for="">Username</label>
+                                <input
+                                    onChange={this.handleTextChange}
+                                    type="text"
+                                    class="form-control"
+                                    name="username"
+                                    id="username"
+                                    placeholder="Enter your username"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input
+                                    onChange={this.handleTextChange}
+                                    type="password"
+                                    class="form-control"
+                                    name="password"
+                                    id="password"
+                                    placeholder="Enter your password"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary col-4">Login</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="">Password</label>
-                        <input 
-                            onChange={this.handleTextChange}
-                            type="password"
-                            class="form-control"
-                            name="password"
-                            id="password" 
-                            placeholder="Enter your password"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary col-4">Login</button>
-                    </div>
-                </form>
-                </div>
                 </div>
             </div>
         )
