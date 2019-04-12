@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, HashRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -25,10 +25,11 @@ export default class App extends Component {
   }
 
   render() {
+    
     return (
 
       <div>
-        <HashRouter>
+        <BrowserRouter>
           <Navbar/>
           <Switch>
               <Route path='/' component={Home} exact />
@@ -44,7 +45,7 @@ export default class App extends Component {
               <Route path='/validation' component= {FormValidation}/>
               <Route component={Error}/>
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     );
   }
