@@ -22,9 +22,6 @@ export default class Navbar extends Component {
                                 <a className="nav-link" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
-                            </li>
-                            <li className="nav-item">
                                 <a className="nav-link" href="/register">Register</a>
                             </li>
                             <li className="nav-item">
@@ -65,7 +62,6 @@ export default class Navbar extends Component {
                                          this.props.onSearch(event.target.value);
                                          event.preventDefault(); }
                                     }/>
-                            {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.props.onHello}>Search</button> */}
                         </form>
                     </div>
                 </nav>

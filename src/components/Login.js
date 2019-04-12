@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Login.css'
 import fire from '../configs/fire'
+import App from '../App';
 
 export default class Login extends Component {
     constructor(props) {
@@ -14,14 +15,14 @@ export default class Login extends Component {
       }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         fire
             .auth()
             .onAuthStateChanged(user => {
-                if(user){
-                    this.SetState(state=>({
+                if (user) {
+                    this.SetState(state => ({
                         ...state.currentUser,
-                        currentUser:user
+                        currentUser: user
                     }))
                 }
             })
@@ -39,13 +40,16 @@ export default class Login extends Component {
                 this.setState({
                     currentUser: response.user
                 });
+
+                if(this.state.currentUser)
+                    this.props.onLogin(this.state.currentUser)
             })
             .catch((error) => {
                 this.setState({
                     message: error.message
                 });
             });
-
+        
         this.writeLog();
     }
 
@@ -86,23 +90,28 @@ export default class Login extends Component {
 
         const { currentUser } = this.state;
 
-        if (currentUser) {
-            return (
-                <div className="container">
-                    <div className="row">
-                        <p className="col-md-10">
-                            Hello {currentUser.email}
-                        </p>
-                        <button 
-                            className="col-md-2 btn btn-primary"
-                            onClick={this.handleLogout}
-                        >
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            );
+        // if (currentUser) {
+        //     return (
+        //         <div className="container">
+        //             <div className="row">
+        //                 <p className="col-md-10">
+        //                     Hello {currentUser.email}
+        //                 </p>
+        //                 <button 
+        //                     className="col-md-2 btn btn-primary"
+        //                     onClick={this.handleLogout}
+        //                 >
+        //                     Logout
+        //                 </button>
+        //             </div>
+        //         </div>
+        //     );
+        // }
+
+        if (currentUser){
+            return <App/>
         }
+
 
         return (
             <div class="container">
